@@ -16,9 +16,7 @@ export default function Home() {
         </p>
         <p>
           <button
-            onClick={() =>
-              to("https://www.dha.gov.ae/Covid19/Pages/arcorona.aspx")
-            }
+            onClick={() => to("https://bit.ly/3bjkug6")}
             className="btn btn-primary btn-lg"
           >
             تعرف أكثر عليه...
@@ -27,7 +25,7 @@ export default function Home() {
       </div>
       <div className="row justify-content-center">
         <div className="col-md-12">
-          <h3 className="text-center">بعض سلالات كورونا السابقة</h3>
+          <h3 className="text-center mb">بعض سلالات كورونا السابقة</h3>
         </div>
       </div>
       <div className="row">

@@ -12,7 +12,8 @@ export default class Stats extends Component {
       selectedCountry: null,
       confirmed: null,
       recovered: null,
-      deaths: null
+      deaths: null,
+      lastUpdate: null
     };
   }
 
@@ -38,14 +39,17 @@ export default class Stats extends Component {
     let url = select.value;
     const uri = url === `all` ? `api` : `api/countries/${url}`;
     const cntr = this.state.countries.find(item => item.value === url);
+
     try {
       const response = await axios.get(uri);
+      let d = new Date(Date.parse(response.data.lastUpdate));
       this.setState(prevState => {
         return {
           ...prevState,
           confirmed: response.data.confirmed.value,
           recovered: response.data.recovered.value,
           deaths: response.data.deaths.value,
+          lastUpdate: d.toUTCString(),
           selectedCountry: cntr.text
         };
       });
@@ -57,54 +61,62 @@ export default class Stats extends Component {
 
   render() {
     return (
-      <div className="row justify-content-center well">
-        <div className="col-md-6">
-          {this.state.loading ? (
-            <img alt="" src="https://i.gifer.com/YCZH.gif" />
-          ) : (
-            <div className="panel panel-info">
-              <div className="panel-heading">
-                <label>إختر الدولة</label>
+      <div className="well content">
+        <div className="row justify-content-center">
+          <div className="col-md-6">
+            {this.state.loading ? (
+              <img
+                alt=""
+                className="img-responsive"
+                src="https://i.gifer.com/YCZH.gif"
+              />
+            ) : (
+              <div className="panel panel-info">
+                <div className="panel-heading">
+                  <label>إختر الدولة</label>
+                </div>
+                <div className="panel-body">
+                  <div className="form-group">
+                    <Dropdown
+                      placeholder="Select Country"
+                      fluid
+                      search
+                      selection
+                      options={this.state.countries}
+                      onChange={this.countrySelected}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="panel-body">
-                <div className="form-group">
-                  <Dropdown
-                    placeholder="Select Country"
-                    fluid
-                    search
-                    selection
-                    options={this.state.countries}
-                    onChange={this.countrySelected}
-                  />
+            )}
+          </div>
+          {this.state.selectedCountry ? (
+            <div className="col-md-6">
+              <div className="panel panel-info">
+                <div className="panel-heading">
+                  <label>
+                    {this.state.selectedCountry} في {this.state.lastUpdate}
+                  </label>
+                </div>
+                <div className="panel-body">
+                  <ul className="list-group">
+                    <li role="presentation" className="list-group-item active">
+                      المصابين
+                      <span className="badge">{this.state.confirmed}</span>
+                    </li>
+                    <li role="presentation" className="list-group-item active">
+                      المتعافين
+                      <span className="badge">{this.state.recovered}</span>
+                    </li>
+                    <li className="list-group-item active">
+                      الوفيات <span className="badge">{this.state.deaths}</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
-          )}
+          ) : null}
         </div>
-        {this.state.selectedCountry ? (
-          <div className="col-md-6">
-            <div className="panel panel-info">
-              <div className="panel-heading">
-                <label>{this.state.selectedCountry}</label>
-              </div>
-              <div className="panel-body">
-                <ul className="list-group">
-                  <li role="presentation" className="list-group-item active">
-                    المصابين
-                    <span className="badge">{this.state.confirmed}</span>
-                  </li>
-                  <li role="presentation" className="list-group-item active">
-                    المتعافين
-                    <span className="badge">{this.state.recovered}</span>
-                  </li>
-                  <li className="list-group-item active">
-                    الوفيات <span className="badge">{this.state.deaths}</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        ) : null}
       </div>
     );
   }

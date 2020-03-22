@@ -6,6 +6,7 @@ import About from "./components/About";
 import Stats from "./components/Stats";
 import Home from "./components/Home";
 import Report from "./components/Report";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Home />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );
