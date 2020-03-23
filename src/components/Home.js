@@ -19,7 +19,7 @@ export default function Home() {
             onClick={() => to("https://bit.ly/3bjkug6")}
             className="btn btn-primary btn-lg"
           >
-            تعرف أكثر عليه...
+            رابط خارجي عن آخر المستجدات
           </button>
         </p>
       </div>

@@ -50,6 +50,14 @@ export default function TopNavigation() {
                 <Link to={item.path}>{item.name}</Link>
               </li>
             ))}
+            <li key="5">
+              <a
+                alt="test"
+                href="https://exp-shell-app-assets.s3.us-west-1.amazonaws.com/android/%40uniqueginun/coronative-app-a9ed5b2d686743fa9acb6c833168d5c5-signed.apk"
+              >
+                حمل تطبيق الجوال
+              </a>
+            </li>
           </ul>
         </div>
       </div>
