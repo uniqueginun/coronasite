@@ -43,7 +43,11 @@ export default function Footer() {
               className="fa fa-envelope-square fa-3x social"
             ></i>
           </a>
-          <a target="_blank" href="https://www.linkedin.com/in/uniqueginun">
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.linkedin.com/in/uniqueginun"
+          >
             <i
               id="social-fb"
               className="fa fa-linkedin-square fa-3x social"

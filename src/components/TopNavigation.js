@@ -10,9 +10,10 @@ export default function TopNavigation() {
 
   const links = [
     { id: 1, path: "/", name: "الرئيسية" },
+    { id: 2, path: "/map", name: "الخريطة" },
     { id: 3, path: "/stats", name: "إحصائيات" },
-    { id: 2, path: "/reports", name: "تقارير" },
-    { id: 4, path: "/about", name: "أسئلة وأجوبة" }
+    { id: 4, path: "/reports", name: "تقارير" },
+    { id: 5, path: "/about", name: "أسئلة وأجوبة" }
   ];
 
   return (
@@ -36,7 +37,7 @@ export default function TopNavigation() {
               alt="Brand"
               width="38"
               height="38"
-              src="./assets/imgs/virus.png"
+              src="../assets/imgs/virus.png"
             />
           </a>
         </div>

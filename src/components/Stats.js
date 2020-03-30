@@ -23,11 +23,11 @@ export default class Stats extends Component {
   }
 
   objToArr = obj => {
-    const countriesArray = Object.keys(obj).map(i => {
+    const countriesArray = obj.map(i => {
       let cntr = {};
-      cntr["key"] = i;
-      cntr["value"] = obj[i];
-      cntr["text"] = i;
+      cntr["key"] = i.name;
+      cntr["value"] = i.iso2;
+      cntr["text"] = i.name;
       return cntr;
     });
     countriesArray.unshift({ key: "all", value: "all", text: "World wide" });
