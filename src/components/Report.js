@@ -18,7 +18,7 @@ export default class Report extends Component {
 
   async componentDidMount() {
     await this.fetchChartOneData();
-    await this.fetchUserCountryData();
+    //await this.fetchUserCountryData();
     await this.fetchGlobalStatus();
   }
 
@@ -118,9 +118,12 @@ export default class Report extends Component {
     return desiredFormat;
   };
 
-  options = {
-    responsive: true
-  };
+  options = text => ({
+    responsive: true,
+    title: {
+      display: true
+    }
+  });
 
   render() {
     return (
@@ -128,7 +131,7 @@ export default class Report extends Component {
         <div className="row">
           <div className="col-md-12">
             <div className="panel">
-              <div className="panel-heading">Latest Global Count</div>
+              <div className="panel-heading"></div>
               <div className="panel-body">
                 {this.state.chartOneLoading ? (
                   <img
@@ -139,29 +142,7 @@ export default class Report extends Component {
                 ) : (
                   <Doughnut
                     data={this.state.firstChartData}
-                    options={this.options}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="col-md-12">
-            <div className="panel">
-              <div className="panel-heading">
-                Latest record for{" "}
-                {this.state.userCountry && this.state.userCountry.name}
-              </div>
-              <div className="panel-body">
-                {this.state.ChartTwoLoading ? (
-                  <img
-                    alt=""
-                    className="img-responsive"
-                    src="https://i.gifer.com/YCZH.gif"
-                  />
-                ) : (
-                  <Doughnut
-                    data={this.state.userCountryData}
-                    options={this.options}
+                    options={this.options("Latest Global Count")}
                   />
                 )}
               </div>
@@ -182,7 +163,7 @@ export default class Report extends Component {
                 ) : (
                   <Line
                     data={this.state.globalStatusData}
-                    options={this.options}
+                    options={this.options("Global Status By Data")}
                   />
                 )}
               </div>
